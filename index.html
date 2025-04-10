@@ -1,469 +1,168 @@
-!DOCTYPE html
-html lang=en
-head
-  meta charset=UTF-8 
-  meta name=viewport content=width=device-width, initial-scale=1.0 
-  titleWeb Lab — Explore the Webtitle
-  link href=httpsfonts.googleapis.comcss2family=Interwght@400;600;700&display=swap rel=stylesheet
-  link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.4.0cssall.min.css 
-  style
-     RESET 
-    , before, after {
-      margin 0;
-      padding 0;
-      box-sizing border-box;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Lab — Explore the Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <div class="logo"><i class="fa-solid fa-flask"></i> WebLab</div>
+    <nav>
+      <a href="#intro">Intro</a>
+      <a href="#inspector">Inspector</a>
+      <a href="#discuss">Discuss</a>
+      <a href="#explore">Explore</a>
+      <a href="#cards">Gallery</a>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+  </header>
 
-    html {
-      scroll-behavior smooth;
-    }
+  <main>
+    <h1>Welcome to Web Lab — Where Code Comes Alive</h1>
 
-    body {
-      font-family 'Inter', sans-serif;
-      background-color #f5f7fa;
-      color #111827;
-      line-height 1.6;
-      transition background-color 0.4s ease, color 0.4s ease;
-    }
+    <section id="intro">
+      <h2>This is a web page</h2>
+      <p>You are looking at an actual web page written in HTML, the language of the web. It's more than just content — it's structure, meaning, and visual form.</p>
+      <p>On the left side (in code editors), you can see the code used by your computer to create this beautiful result. This is where websites begin.</p>
+      <button class="btn" onclick="openModal('intro-modal')">Learn More</button>
+    </section>
 
-    body.dark {
-      background-color #0f172a;
-      color #f8fafc;
-    }
+    <section id="inspector">
+      <h2>Inspector Tool</h2>
+      <p>The Inspector tool in your browser allows you to examine the elements of a web page. You can see how everything is constructed and what HTML, CSS, and JS are doing under the hood.</p>
+      <p>Use it with a partner to discover what lies beneath the surface of great design.</p>
+      <button class="btn" onclick="openModal('inspector-modal')">Try Inspect</button>
+    </section>
 
-    header {
-      display flex;
-      justify-content space-between;
-      align-items center;
-      padding 24px 60px;
-      background #ffffffdd;
-      backdrop-filter blur(10px);
-      position sticky;
-      top 0;
-      z-index 1000;
-      border-bottom 1px solid #e5e7eb;
-    }
+    <section id="discuss">
+      <h2>Discuss</h2>
+      <p>With a friend, explore these guiding questions to deepen your understanding:</p>
+      <ul>
+        <li>What text is appearing in both the code and the web page?</li>
+        <li>How is this language communicating extra information about the way to represent text?</li>
+        <li>What roles do elements like &lt;h1&gt;, &lt;p&gt;, &lt;ul&gt;, and others play?</li>
+      </ul>
+      <button class="btn" onclick="openModal('discuss-modal')">Start Discussion</button>
+    </section>
 
-    .dark header {
-      background #1e293bdd;
-      border-bottom 1px solid #334155;
-    }
+    <section id="explore">
+      <h2>Explore More</h2>
+      <p>This section invites you to dive deeper into the world of modern web development. From layout systems like Flexbox and Grid to frameworks like React, the possibilities are endless.</p>
+      <ul>
+        <li>HTML5 & semantic structure</li>
+        <li>CSS3 animations and transitions</li>
+        <li>JavaScript interactivity</li>
+        <li>Responsive & mobile-first design</li>
+        <li>Dark mode support and theming</li>
+      </ul>
+      <button class="btn" onclick="openModal('explore-modal')">Explore Technologies</button>
+    </section>
 
-    .logo {
-      font-size 1.8rem;
-      font-weight 700;
-      color #3b82f6;
-      display flex;
-      align-items center;
-      gap 10px;
-    }
+    <section id="cards">
+      <h2>Creative Showcase</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Modern Layouts</h3>
+          <p>Learn how designers build adaptive layouts using CSS Grid and Flexbox. It's the foundation of responsive design today.</p>
+        </div>
+        <div class="card">
+          <h3>Dark Mode</h3>
+          <p>Dark mode isn't just a trend. It’s a user-friendly feature that enhances visual comfort and style.</p>
+        </div>
+        <div class="card">
+          <h3>Interactive Animations</h3>
+          <p>Delight your users with fluid animations and transitions using modern CSS and JavaScript.</p>
+        </div>
+        <div class="card">
+          <h3>Component-Based Design</h3>
+          <p>Break interfaces into reusable pieces. Component thinking powers modern frontends like React and Vue.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    nav a {
-      margin-left 30px;
-      text-decoration none;
-      font-weight 500;
-      color #1f2937;
-      position relative;
-      font-size 1rem;
-      transition color 0.3s;
-    }
-
-    .dark nav a {
-      color #f8fafc;
-    }
-
-    nav aafter {
-      content ;
-      position absolute;
-      left 0;
-      bottom -4px;
-      width 0;
-      height 2px;
-      background-color #3b82f6;
-      transition width 0.3s ease;
-    }
-
-    nav ahoverafter {
-      width 100%;
-    }
-
-    .theme-toggle {
-      background-color #3b82f6;
-      border none;
-      color white;
-      font-weight 600;
-      padding 10px 18px;
-      border-radius 12px;
-      cursor pointer;
-      transition background 0.3s ease, transform 0.2s ease;
-    }
-
-    .theme-togglehover {
-      background-color #2563eb;
-      transform scale(1.1);
-    }
-
-    main {
-      max-width 1200px;
-      margin 0 auto;
-      padding 80px 20px;
-    }
-
-    section {
-      margin-bottom 100px;
-      background-color white;
-      padding 60px;
-      border-radius 30px;
-      box-shadow 0 10px 30px rgba(0,0,0,0.06);
-      transition transform 0.4s, opacity 0.4s;
-      opacity 0;
-      transform translateY(50px);
-    }
-
-    .dark section {
-      background-color #1e293b;
-    }
-
-    section.active {
-      opacity 1;
-      transform translateY(0);
-    }
-
-    h1 {
-      font-size 3rem;
-      text-align center;
-      margin-bottom 40px;
-      color #3b82f6;
-    }
-
-    h2 {
-      font-size 2rem;
-      margin-bottom 24px;
-      border-left 6px solid #3b82f6;
-      padding-left 16px;
-    }
-
-    p {
-      font-size 1.125rem;
-      margin-bottom 20px;
-    }
-
-    ul {
-      list-style none;
-      padding-left 0;
-    }
-
-    li {
-      background #eff6ff;
-      padding 16px 24px;
-      border-radius 14px;
-      margin-bottom 16px;
-      font-size 1.1rem;
-    }
-
-    .dark li {
-      background #334155;
-    }
-
-    .btn {
-      background linear-gradient(to right, #3b82f6, #2563eb);
-      color #fff;
-      padding 16px 32px;
-      font-size 1.1rem;
-      border none;
-      border-radius 14px;
-      cursor pointer;
-      font-weight 600;
-      margin-top 20px;
-      transition transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btnhover {
-      transform translateY(-3px);
-      box-shadow 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-grid {
-      display grid;
-      grid-template-columns repeat(auto-fit, minmax(280px, 1fr));
-      gap 30px;
-      margin-top 40px;
-    }
-
-    .card {
-      background-color #ffffff;
-      border-radius 24px;
-      padding 30px;
-      box-shadow 0 10px 25px rgba(0,0,0,0.05);
-      transition transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .cardhover {
-      transform translateY(-8px);
-      box-shadow 0 16px 40px rgba(0,0,0,0.08);
-    }
-
-    .dark .card {
-      background-color #334155;
-    }
-
-    .card h3 {
-      font-size 1.5rem;
-      margin-bottom 12px;
-      color #3b82f6;
-    }
-
-    .card p {
-      font-size 1rem;
-      color #475569;
-    }
-
-    .dark .card p {
-      color #cbd5e1;
-    }
-
-    footer {
-      text-align center;
-      padding 60px 20px;
-      background #f1f5f9;
-      color #64748b;
-      font-size 0.95rem;
-    }
-
-    .dark footer {
-      background #0f172a;
-      color #94a3b8;
-    }
-
-     Модальное окно 
-    .modal {
-      position fixed;
-      top 0;
-      left 0;
-      width 100%;
-      height 100%;
-      background-color rgba(0, 0, 0, 0.5);
-      display none;
-      justify-content center;
-      align-items center;
-    }
-
-    .modal-content {
-      background white;
-      padding 20px;
-      border-radius 10px;
-      max-width 500px;
-      width 100%;
-      animation modalFadeIn 0.5s ease-in-out;
-    }
-
-    .modal-header {
-      font-size 1.5rem;
-      margin-bottom 15px;
-    }
-
-    .modal-body {
-      font-size 1.125rem;
-      margin-bottom 15px;
-    }
-
-    .modal-footer {
-      text-align right;
-    }
-
-    .close-modal {
-      background #3b82f6;
-      border none;
-      color white;
-      padding 10px 20px;
-      border-radius 12px;
-      cursor pointer;
-      transition background 0.3s ease;
-    }
-
-    .close-modalhover {
-      background #2563eb;
-    }
-
-    @keyframes modalFadeIn {
-      0% { opacity 0; transform scale(0.8); }
-      100% { opacity 1; transform scale(1); }
-    }
-
-    @media (max-width 768px) {
-      header {
-        flex-direction column;
-        gap 16px;
-        padding 20px;
-      }
-
-      nav a {
-        margin-left 0;
-        margin-right 20px;
-      }
-
-      section {
-        padding 40px 20px;
-      }
-    }
-  style
-head
-body
-  header
-    div class=logoi class=fa-solid fa-flaski WebLabdiv
-    nav
-      a href=#introIntroa
-      a href=#inspectorInspectora
-      a href=#discussDiscussa
-      a href=#exploreExplorea
-      a href=#cardsGallerya
-      button class=theme-toggle onclick=toggleTheme()🌙button
-    nav
-  header
-
-  main
-    h1Welcome to Web Lab — Where Code Comes Aliveh1
-
-    section id=intro
-      h2This is a web pageh2
-      pYou are looking at an actual web page written in HTML, the language of the web. It's more than just content — it's structure, meaning, and visual form.p
-      pOn the left side (in code editors), you can see the code used by your computer to create this beautiful result. This is where websites begin.p
-      button class=btn onclick=openModal('intro-modal')Learn Morebutton
-    section
-
-    section id=inspector
-      h2Inspector Toolh2
-      pThe Inspector tool in your browser allows you to examine the elements of a web page. You can see how everything is constructed and what HTML, CSS, and JS are doing under the hood.p
-      pUse it with a partner to discover what lies beneath the surface of great design.p
-      button class=btn onclick=openModal('inspector-modal')Try Inspectbutton
-    section
-
-    section id=discuss
-      h2Discussh2
-      pWith a friend, explore these guiding questions to deepen your understandingp
-      ul
-        liWhat text is appearing in both the code and the web pageli
-        liHow is this language communicating extra information about the way to represent textli
-        liWhat roles do elements like &lt;h1&gt;, &lt;p&gt;, &lt;ul&gt;, and others playli
-      ul
-      button class=btn onclick=openModal('discuss-modal')Start Discussionbutton
-    section
-
-    section id=explore
-      h2Explore Moreh2
-      pThis section invites you to dive deeper into the world of modern web development. From layout systems like Flexbox and Grid to frameworks like React, the possibilities are endless.p
-      ul
-        liHTML5 & semantic structureli
-        liCSS3 animations and transitionsli
-        liJavaScript interactivityli
-        liResponsive & mobile-first designli
-        liDark mode support and themingli
-      ul
-      button class=btn onclick=openModal('explore-modal')Explore Technologiesbutton
-    section
-
-    section id=cards
-      h2Creative Showcaseh2
-      div class=card-grid
-        div class=card
-          h3Modern Layoutsh3
-          pLearn how designers build adaptive layouts using CSS Grid and Flexbox. It's the foundation of responsive design today.p
-        div
-        div class=card
-          h3Dark Modeh3
-          pDark mode isn't just a trend. It’s a user-friendly feature that enhances visual comfort and style.p
-        div
-        div class=card
-          h3Interactive Animationsh3
-          pDelight your users with fluid animations and transitions using modern CSS and JavaScript.p
-        div
-        div class=card
-          h3Component-Based Designh3
-          pBreak interfaces into reusable pieces. Component thinking powers modern frontends like React and Vue.p
-        div
-      div
-    section
-  main
-
-  footer
+  <footer>
     © 2025 WebLab Project. Made with ❤️ for curious minds.
-  footer
+  </footer>
 
-  !-- Модальные окна --
-  div id=intro-modal class=modal
-    div class=modal-content
-      div class=modal-headerLearn More About HTMLdiv
-      div class=modal-body
-        pHTML (Hypertext Markup Language) is the standard language used to create web pages. It structures content using elements such as headings, paragraphs, and links.p
-      div
-      div class=modal-footer
-        button class=close-modal onclick=closeModal('intro-modal')Closebutton
-      div
-    div
-  div
+  <!-- Модальные окна -->
+  <div id="intro-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Learn More About HTML</div>
+      <div class="modal-body">
+        <p>HTML (Hypertext Markup Language) is the standard language used to create web pages. It structures content using elements such as headings, paragraphs, and links.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-modal" onclick="closeModal('intro-modal')">Close</button>
+      </div>
+    </div>
+  </div>
 
-  div id=inspector-modal class=modal
-    div class=modal-content
-      div class=modal-headerInspector Tooldiv
-      div class=modal-body
-        pThe Inspector tool lets you see the raw HTML, CSS, and JavaScript code used to render any element on a web page. It’s an excellent way to learn about web design.p
-      div
-      div class=modal-footer
-        button class=close-modal onclick=closeModal('inspector-modal')Closebutton
-      div
-    div
-  div
+  <div id="inspector-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Inspector Tool</div>
+      <div class="modal-body">
+        <p>The Inspector tool lets you see the raw HTML, CSS, and JavaScript code used to render any element on a web page. It’s an excellent way to learn about web design.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-modal" onclick="closeModal('inspector-modal')">Close</button>
+      </div>
+    </div>
+  </div>
 
-  div id=discuss-modal class=modal
-    div class=modal-content
-      div class=modal-headerDiscussiondiv
-      div class=modal-body
-        pDiscuss with your partner the structure of the page and explore what each HTML element does. How do CSS and JavaScript enhance the pagep
-      div
-      div class=modal-footer
-        button class=close-modal onclick=closeModal('discuss-modal')Closebutton
-      div
-    div
-  div
+  <div id="discuss-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Discussion</div>
+      <div class="modal-body">
+        <p>Discuss with your partner the structure of the page and explore what each HTML element does. How do CSS and JavaScript enhance the page?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-modal" onclick="closeModal('discuss-modal')">Close</button>
+      </div>
+    </div>
+  </div>
 
-  div id=explore-modal class=modal
-    div class=modal-content
-      div class=modal-headerExplore Web Technologiesdiv
-      div class=modal-body
-        pLearn more about the cutting-edge technologies used to build modern websites, including responsive design, CSS Grid, and JavaScript frameworks.p
-      div
-      div class=modal-footer
-        button class=close-modal onclick=closeModal('explore-modal')Closebutton
-      div
-    div
-  div
+  <div id="explore-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Explore Web Technologies</div>
+      <div class="modal-body">
+        <p>Learn more about the cutting-edge technologies used to build modern websites, including responsive design, CSS Grid, and JavaScript frameworks.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-modal" onclick="closeModal('explore-modal')">Close</button>
+      </div>
+    </div>
+  </div>
 
-  script
-     Функция для переключения темы
+  <script>
+    // Функция для переключения темы
     function toggleTheme() {
       document.body.classList.toggle('dark');
     }
 
-     Функция для открытия модального окна
+    // Функция для открытия модального окна
     function openModal(modalId) {
       document.getElementById(modalId).style.display = 'flex';
     }
 
-     Функция для закрытия модального окна
+    // Функция для закрытия модального окна
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
     }
 
-     Анимация для активных секций
+    // Анимация для активных секций
     window.addEventListener('scroll', function() {
       const sections = document.querySelectorAll('section');
-      sections.forEach(section = {
+      sections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        if (rect.top  window.innerHeight && rect.bottom  0) {
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
           section.classList.add('active');
         }
       });
     });
-  script
-body
-html
+  </script>
+</body>
+</html>
